@@ -1,7 +1,11 @@
+#include <stdio.h>
+#include "list.h"
 #include "dialog.h"
 
+
 int main() {
-    Graph* graph = new_graph();
-    D_Add(graph);
+    Graph *graph = NULL;
+    graph = new_matrix(graph);
+    dialog(graph);
     return 0;
 }
