@@ -1,16 +1,19 @@
 //
-// Created by yura on 07.05.2021.
+// Created by yura on 10.05.2021.
 //
 
-#ifndef LAB5_SEM2_DIALOG_H
-#define LAB5_SEM2_DIALOG_H
+#ifndef GRAPH_DIALOG_H
+#define GRAPH_DIALOG_H
 
-#include <string.h>
+#include "list.h"
 
-#include "Graph.h"
-#include "Tree.h"
-#include "Func.h"
 
-int D_Add(Graph* graph);
+void dialog(Graph *);
+void D_Add(Graph *);
+void D_Show(Graph*);
+void D_Find(Graph*);
+void D_Delete(Graph*);
+void scan_int(int *);
+char* scan_string(char *);
 
-#endif //LAB5_SEM2_DIALOG_H
+#endif //GRAPH_DIALOG_H
