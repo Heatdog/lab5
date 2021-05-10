@@ -1,26 +1,56 @@
 //
-// Created by yura on 07.05.2021.
+// Created by yura on 10.05.2021.
 //
 
-#ifndef LAB5_SEM2_LIST_H
-#define LAB5_SEM2_LIST_H
+#ifndef GRAPH_LIST_H
+#define GRAPH_LIST_H
 
-#include "Func.h"
 
-typedef struct Item {
-    int name[2];
+typedef struct node_{
+    int coordinates[2];
+    char *name;
     int weight;
-    struct Item* next;
-}Item;
+    int color;
+    struct node_* next;
+    struct node_* prev;
+}Node;
 
-typedef struct List {
-    Item* head;
-    Item* tail;
+typedef struct list_{
+    Node *head;
+    Node *tail;
 }List;
 
-List* new_list();
+typedef struct graph_{
+    List **list;
+    int count;
+}Graph;
 
-int add_list(List* list, int name[], int weight);
-int pop_queue(List* list);
 
-#endif //LAB5_SEM2_LIST_H
+Graph *new_matrix(Graph*);
+//////////////// Insertion ///////////////
+void add_edge(Graph *);
+Node *new_node(Node*, int[], char *);
+void input_graph(Graph*, Node*);
+void add_vertex(Graph*);
+void input_edge(Graph*, char *, char *, int);
+void input_edge_in_list(List*, Node*);
+Node *copy_node(Node*, Node*, int);
+List *check_name_coords(Graph*, char *, int []);
+/////////////// Show /////////////////////
+void show_graph(Graph*);
+void show_list(List*);
+void show_node(Node*);
+/////////////// Delete /////////////////////
+void delete_vertex(Graph*);
+void delete_vertex_key(Graph*, char *);
+void delete_in_list(List*, char *);
+void delete_list(List*);
+void delete_edge(Graph*);
+void delete_edge_key(Graph*, char *, char *);
+/////////////// BFS ////////////////////////
+List *find_list(Graph*, char *);
+//void BFS(Graph*, char *, int**);
+
+
+
+#endif //GRAPH_LIST_H
