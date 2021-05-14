@@ -44,6 +44,7 @@ Node *new_node(Node* node, int keys[], char *name){
     node->coordinates[1] = keys[1];
     node->name = name;
     node->weight = 0;
+    node->color = 0;
     return node;
 }
 
@@ -114,6 +115,7 @@ Node *copy_node(Node* node_1, Node* node_2, int weight){
     node_1->coordinates[1] = node_2->coordinates[1];
     node_1->next = NULL;
     node_1->prev = NULL;
+    node_1->color = 0;
     node_1->weight = weight;
     return node_1;
 }
@@ -239,5 +241,30 @@ List *check_name_coords(Graph* graph, char *name, int keys[]){
             return graph->list[i];
         }
     }
+    return NULL;
+}
+
+Node *DFS(Graph* graph, char *name, char *find){
+    Node *ptr = NULL, *ptr_prev = NULL, *ptr_list = NULL;
+    List *list = NULL;
+    List *list_find = NULL;
+    list = find_list(graph, name);
+    ptr = list->head;
+    ptr_prev = ptr;
+    ptr->color = 1;
+    ptr_list = ptr->next;
+    while (ptr_list != NULL){
+        list_find = find_list(graph, ptr_list->name);
+    }
+    while (ptr != NULL){
+        if (strcmp(ptr->name, find) == 0){
+            return ptr;
+        }
+        if(ptr->color == 0){
+            DFS(graph, ptr->name, find);
+        }
+        ptr = ptr->next;
+    }
+    ptr_prev->color = 2;
     return NULL;
 }
