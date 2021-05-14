@@ -49,7 +49,8 @@ void delete_edge(Graph*);
 void delete_edge_key(Graph*, char *, char *);
 /////////////// BFS ////////////////////////
 List *find_list(Graph*, char *);
-//void BFS(Graph*, char *, int**);
+Node *find_node(List*, char *);
+Node *DFS(Graph*, char *, char *);
 
 
 
