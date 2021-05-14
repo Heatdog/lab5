@@ -75,11 +75,18 @@ void D_Delete(Graph* graph){
 }
 
 void D_Find(Graph* graph){
-    char *name = NULL;
-    int **mass = NULL;
+    char *name = NULL, *find = NULL;
+    Node *node = NULL;
     printf("Please, enter vertex, from which you want start BFS\nEnter-->");
     name = scan_string(name);
-    //BFS(graph, name, mass);
+    printf("Please, enter vertex, which you want to find\nEnter-->");
+    find = scan_string(find);
+    node = DFS(graph, name, find);
+    if (node == NULL){
+        printf("We can`t find this element!\n");
+    } else{
+        show_node(node);
+    }
 }
 
 
