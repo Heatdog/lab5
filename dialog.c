@@ -82,10 +82,10 @@ void D_Delete(Graph* graph){
     }
 }
 
-void D_Find(Graph* graph){
-    char *name = NULL, *find = NULL;
-    Node *node = NULL;
-    List_Check *list = NULL;
+void D_Find(Graph* graph) {
+    char* name = NULL, * find = NULL;
+    Node* node = NULL;
+    List_Check* list = NULL;
     printf("Please, enter vertex, from which you want start BFS\nEnter-->");
     name = scan_string(name);
     printf("Please, enter vertex, which you want to find\nEnter-->");
@@ -93,41 +93,47 @@ void D_Find(Graph* graph){
     list = new_list(list);
     node = DFS(graph, name, find, list);
     delete_list_check(list);
-    if (node == NULL){
+    if (node == NULL) {
         printf("We can`t find this element!\n");
-    } else{
+    }
+    else {
         show_result(node);
     }
+    free(name);
+    free(find);
 }
 
-void D_Dexter(Graph* graph){
-    char *name_1 = NULL, *name_2 = NULL;
+void D_Dexter(Graph* graph) {
+    char* name_1 = NULL, * name_2 = NULL;
     int n;
-    Mass *mass = NULL;
+    Mass* mass = NULL;
     printf("Please, enter start vertex\nEnter-->");
     name_1 = scan_string(name_1);
-    if (name_1 == NULL){
+    if (name_1 == NULL) {
         printf("We can`t find this vertex!\n");
         return;
     }
     printf("Please, enter finish vertex\nEnter-->");
     name_2 = scan_string(name_2);
-    if (name_2 == NULL){
+    if (name_2 == NULL) {
         printf("We can`t find this vertex!\n");
         return;
     }
     mass = new_mass(graph, mass, name_1);
     n = Dexter(graph, name_2, mass);
-    if (n < 0 || n == 2147483647){
+    if (n < 0 || n == 2147483647) {
         printf("Error!\n");
-    } else{
+    }
+    else {
         printf("%d\n", n);
     }
     delete_mass(mass);
+    free(name_1);
+    free(name_2);
 }
 
-void D_Decomposition(Graph* graph){
-    Mass *mass = NULL;
+void D_Decomposition(Graph* graph) {
+    Mass* mass = NULL;
     mass = dec_new_mass(graph, mass);
     mass = decomposition(graph, mass);
     delete_mass(mass);
@@ -147,7 +153,7 @@ void scan_int(int* n) {
 
 char* scan_string(char* n) {
     int k = 0;
-    n = (char*)malloc(100*sizeof (char ));
+    n = (char*)malloc(100 * sizeof(char));
     do {
         k = scanf("%s", n);
         if (k != 1) {
