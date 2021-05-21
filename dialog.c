@@ -9,7 +9,7 @@
 
 
 
-const char *msgs[] = {"0. Quit", "1. Add", "2. Find", "3. Delete", "4. Show"};
+const char *msgs[] = {"0. Quit", "1. Add", "2. Find", "3. Delete", "4. Dexter", "5. Decomposition", "6. Show"};
 const int N =sizeof(msgs) / sizeof(msgs[0]);
 
 void dialog(Graph *graph)
@@ -36,6 +36,14 @@ void dialog(Graph *graph)
             }
             case 3:{
                 D_Delete(graph);
+                break;
+            }
+            case 4:{
+                D_Dexter(graph);
+                break;
+            }
+            case 5:{
+                D_Decomposition(graph);
                 break;
             }
             default:{
@@ -77,16 +85,52 @@ void D_Delete(Graph* graph){
 void D_Find(Graph* graph){
     char *name = NULL, *find = NULL;
     Node *node = NULL;
+    List_Check *list = NULL;
     printf("Please, enter vertex, from which you want start BFS\nEnter-->");
     name = scan_string(name);
     printf("Please, enter vertex, which you want to find\nEnter-->");
     find = scan_string(find);
-    node = DFS(graph, name, find);
+    list = new_list(list);
+    node = DFS(graph, name, find, list);
+    delete_list_check(list);
     if (node == NULL){
         printf("We can`t find this element!\n");
     } else{
-        show_node(node);
+        show_result(node);
     }
+}
+
+void D_Dexter(Graph* graph){
+    char *name_1 = NULL, *name_2 = NULL;
+    int n;
+    Mass *mass = NULL;
+    printf("Please, enter start vertex\nEnter-->");
+    name_1 = scan_string(name_1);
+    if (name_1 == NULL){
+        printf("We can`t find this vertex!\n");
+        return;
+    }
+    printf("Please, enter finish vertex\nEnter-->");
+    name_2 = scan_string(name_2);
+    if (name_2 == NULL){
+        printf("We can`t find this vertex!\n");
+        return;
+    }
+    mass = new_mass(graph, mass, name_1);
+    n = Dexter(graph, name_2, mass);
+    if (n < 0 || n == 2147483647){
+        printf("Error!\n");
+    } else{
+        printf("%d\n", n);
+    }
+    delete_mass(mass);
+}
+
+void D_Decomposition(Graph* graph){
+    Mass *mass = NULL;
+    mass = dec_new_mass(graph, mass);
+    mass = decomposition(graph, mass);
+    delete_mass(mass);
 }
 
 
