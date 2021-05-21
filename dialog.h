@@ -13,6 +13,8 @@ void D_Add(Graph *);
 void D_Show(Graph*);
 void D_Find(Graph*);
 void D_Delete(Graph*);
+void D_Dexter(Graph*);
+void D_Decomposition(Graph*);
 void scan_int(int *);
 char* scan_string(char *);
 
