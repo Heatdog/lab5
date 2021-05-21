@@ -7,5 +7,6 @@ int main() {
     Graph *graph = NULL;
     graph = new_matrix(graph);
     dialog(graph);
+    delete_graph(graph);
     return 0;
 }
